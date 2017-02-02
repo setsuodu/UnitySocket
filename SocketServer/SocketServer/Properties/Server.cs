@@ -7,6 +7,27 @@ namespace ChatServer
 {
     class Server
     {
+        public static void BroadcastMessage(string message)
+        {
+            var notConnectedList = new List<Client>();
+
+            foreach (var client in clientList)
+            {
+                if (client.Connected)
+                {
+                    client.SendMessage(message);
+                }
+                else
+                {
+                    notConnectedList.Add(client);
+                }
+            }
+            foreach (var temp in notConnectedList)
+            {
+                clientList.Remove(temp);
+            }
+        }
+
         static List<Client> clientList = new List<Client>();
 	    static void Main (string[] args)
         {
@@ -20,6 +41,7 @@ namespace ChatServer
             while(true)
             {
                 Socket clientSocket = tcpServer.Accept(); //接收连接，返回Socket类
+                Console.WriteLine("a client is connected!");
                 Client client = new Client(clientSocket); //每个客户端收发消息的逻辑放到Client类中处理
                 clientList.Add(client);
             }

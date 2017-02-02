@@ -3,3 +3,8 @@ c:\users\33913\documents\visual studio 2015\Projects\SocketServer\SocketServer\b
 c:\users\33913\documents\visual studio 2015\Projects\SocketServer\SocketServer\bin\Debug\SocketServer.pdb
 c:\users\33913\documents\visual studio 2015\Projects\SocketServer\SocketServer\obj\Debug\SocketServer.exe
 c:\users\33913\documents\visual studio 2015\Projects\SocketServer\SocketServer\obj\Debug\SocketServer.pdb
+G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.exe
+G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.pdb
+G:\UnitySocket\SocketServer\SocketServer\bin\Debug\SocketServer.exe
+G:\UnitySocket\SocketServer\SocketServer\bin\Debug\SocketServer.pdb
+G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.csprojResolveAssemblyReference.cache
