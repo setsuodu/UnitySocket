@@ -1,0 +1,2 @@
+G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.exe
+G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.pdb

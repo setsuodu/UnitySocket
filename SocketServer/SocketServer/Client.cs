@@ -3,7 +3,7 @@ using System.Threading;
 using System.Text;
 using System;
 
-namespace ChatServer
+namespace ChatServerTCP
 {
     class Client
     {

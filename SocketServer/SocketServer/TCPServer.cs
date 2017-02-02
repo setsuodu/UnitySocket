@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * TCP收发数据前，要先建立连接：服务器端accept，客户端connect。
+ */
+
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System;
 
-namespace ChatServer
+namespace ChatServerTCP
 {
-    class Server
+    class TCPServer
     {
         public static void BroadcastMessage(string message)
         {

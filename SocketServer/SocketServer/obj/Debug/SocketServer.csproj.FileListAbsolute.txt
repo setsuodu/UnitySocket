@@ -8,3 +8,5 @@ G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.pdb
 G:\UnitySocket\SocketServer\SocketServer\bin\Debug\SocketServer.exe
 G:\UnitySocket\SocketServer\SocketServer\bin\Debug\SocketServer.pdb
 G:\UnitySocket\SocketServer\SocketServer\obj\Debug\SocketServer.csprojResolveAssemblyReference.cache
+G:\UnitySocket\SocketServer\SocketServerTCP\obj\Debug\SocketServer.exe
+G:\UnitySocket\SocketServer\SocketServerTCP\obj\Debug\SocketServer.pdb
