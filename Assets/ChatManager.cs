@@ -27,7 +27,6 @@ public class ChatManager : MonoBehaviour
     {
         if (message != null && message != "")
         {
-            Debug.Log("hello");
             chatLable.text += "\n" + message;
             message = ""; //清空消息
         }
