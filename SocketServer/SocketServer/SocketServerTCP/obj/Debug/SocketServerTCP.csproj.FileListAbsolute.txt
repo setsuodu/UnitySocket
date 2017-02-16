@@ -1,0 +1,5 @@
+F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.csprojResolveAssemblyReference.cache
+F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\bin\Debug\SocketServerTCP.exe
+F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\bin\Debug\SocketServerTCP.pdb
+F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.exe
+F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.pdb
