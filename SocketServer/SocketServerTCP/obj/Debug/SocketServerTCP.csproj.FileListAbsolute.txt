@@ -3,3 +3,5 @@ F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\bin\Debug\SocketServerT
 F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\bin\Debug\SocketServerTCP.pdb
 F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.exe
 F:\UnitySocket\SocketServer\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.pdb
+F:\UnitySocket\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.exe
+F:\UnitySocket\SocketServer\SocketServerTCP\obj\Debug\SocketServerTCP.pdb
