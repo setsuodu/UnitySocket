@@ -38,7 +38,7 @@ namespace ChatServerTCP
             Socket tcpServer = new Socket(AddressFamily.InterNetwork,SocketType.Stream, ProtocolType.Tcp);
             Console.WriteLine("server is running...");
 
-            tcpServer.Bind(new IPEndPoint(IPAddress.Parse("192.168.1.100"),7788));
+            tcpServer.Bind(new IPEndPoint(IPAddress.Parse("192.168.0.224"),7788));
 
             tcpServer.Listen(100);
 
