@@ -23,6 +23,8 @@ public class Proto2CSEditor : EditorWindow
         RunBat(batFilePath);
 
         string outputPath = Path.Combine(root, protoRoot, outputDir);
+        if (!Directory.Exists(outputPath)) 
+            Directory.CreateDirectory(outputPath);
         //UnityEngine.Debug.Log(outputPath);
         OpenExplorer(outputPath);
 
@@ -32,11 +34,15 @@ public class Proto2CSEditor : EditorWindow
         for (int i = 0; i < files.Length; i++)
         {
             string _src = files[i].FullName;
-            string _dst = Path.Combine(Application.dataPath, "Scripts/Model", files[i].Name);
-            UnityEngine.Debug.LogFormat("{0}\n<color=yellow>[====>>]</color> {1}", _src, _dst);
-            string str1 = "[00:00:00]";
-            string str2 = "[--:--:--]";
-            CopyTo(_src, _dst);
+
+            string _client = Path.Combine(Application.dataPath, "Scripts/Model", files[i].Name);
+            UnityEngine.Debug.LogFormat("{0}\n<color=green>[==>client]</color> {1}", _src, _client);
+            CopyTo(_src, _client);
+
+            string serverModelDir = @"Server\SocketServerTCP\Model";
+            string _server = Path.Combine(root, serverModelDir, files[i].Name);
+            UnityEngine.Debug.LogFormat("{0}\n<color=green>[==>server]</color> {1}", _src, _server);
+            CopyTo(_src, _server);
         }
     }
 
@@ -78,6 +84,7 @@ public class Proto2CSEditor : EditorWindow
         if (File.Exists(dstPath)) 
         {
             File.Delete(dstPath);
+            UnityEngine.Debug.Log("<color=red>删除旧文件：</color>" + dstPath);
         }
         File.Copy(srcPath, dstPath);
     }

@@ -2,16 +2,16 @@
  * TCP收发数据前，要先建立连接：服务器端accept，客户端connect。
  */
 
-using System.Collections.Generic;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System;
+using System.Collections.Generic;
 
 namespace ChatServerTCP
 {
     class TCPServer
     {
-        public static void BroadcastMessage(string message)
+        public static void BroadcastMessage(byte[] data)
         {
             var notConnectedList = new List<Client>();
 
@@ -19,7 +19,7 @@ namespace ChatServerTCP
             {
                 if (client.Connected)
                 {
-                    client.SendMessage(message);
+                    client.Send(data);
                 }
                 else
                 {

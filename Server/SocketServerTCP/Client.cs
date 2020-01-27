@@ -1,7 +1,6 @@
-﻿using System.Net.Sockets;
+﻿using System;
 using System.Threading;
-using System.Text;
-using System;
+using System.Net.Sockets;
 
 namespace ChatServerTCP
 {
@@ -30,16 +29,23 @@ namespace ChatServerTCP
                 }
 
                 int length = clientSocket.Receive(data);
-                string message = Encoding.UTF8.GetString(data, 0, length); //ToDo: 接收到数据时，要把该数据分发到各个客户端
-                //广播这个消息
-                TCPServer.BroadcastMessage(message);
-                Console.WriteLine("收到了消息：" + message);
+                //string message = Encoding.UTF8.GetString(data, 0, length); //ToDo: 接收到数据时，要把该数据分发到各个客户端
+                //byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
+
+                //直接广播这个消息
+                TCPServer.BroadcastMessage(data);
+
+                if (length > 0)
+                {
+                    TheMsg msg2 = ProtobufferTool.Deserialize<TheMsg>(data);
+                    string message = string.Format("{0}说： {1}", msg2.Name, msg2.Content);
+                    Console.WriteLine("收到了消息：" + message + "[" + length + "]");
+                }
             }
         }
 
-        public void SendMessage(string message)
+        public void Send(byte[] data)
         {
-            byte[] data = Encoding.UTF8.GetBytes(message);
             clientSocket.Send(data);
         }
 
