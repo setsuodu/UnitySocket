@@ -1,4 +1,0 @@
-G:\UnitySocket\SocketServer\SocketClientUDP\bin\Debug\SocketClientUDP.exe
-G:\UnitySocket\SocketServer\SocketClientUDP\bin\Debug\SocketClientUDP.pdb
-G:\UnitySocket\SocketServer\SocketClientUDP\obj\Debug\SocketClientUDP.exe
-G:\UnitySocket\SocketServer\SocketClientUDP\obj\Debug\SocketClientUDP.pdb

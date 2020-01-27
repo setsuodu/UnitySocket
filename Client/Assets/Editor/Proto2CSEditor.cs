@@ -1,77 +1,94 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using Path = System.IO.Path;
 using UnityEngine;
 using UnityEditor;
-
-internal class OpcodeInfo
-{
-	public string Name;
-	public int Opcode;
-}
 
 public class Proto2CSEditor : EditorWindow
 {
 	[MenuItem("Tools/Proto2CS")]
 	public static void AllProto2CS()
 	{
-		Process process = ProcessHelper.Run("dotnet", "Proto2CS.dll", "../Proto/", true);
-		UnityEngine.Debug.Log(process.StandardOutput.ReadToEnd());
-		AssetDatabase.Refresh();
-	}
-}
+        ClearConsole();
 
-public static class ProcessHelper
-{
-    public static Process Run(string exe, string arguments, string workingDirectory = ".", bool waitExit = false)
+        string root = Path.GetFullPath(@".."); //上级目录
+        //string dir2 = Path.GetFullPath(@"..//.."); //上上级目录
+        string protoRoot = "Protoc/bin";
+        string outputDir = "cs";
+        string fileName = "run.bat";
+
+        string batFilePath = Path.Combine(root, protoRoot, fileName);
+        //UnityEngine.Debug.Log(batFilePath);
+        RunBat(batFilePath);
+
+        string outputPath = Path.Combine(root, protoRoot, outputDir);
+        //UnityEngine.Debug.Log(outputPath);
+        OpenExplorer(outputPath);
+
+        // 遍历目录下所有文件
+        DirectoryInfo outputInfo = new DirectoryInfo(outputPath);
+        FileInfo[] files = outputInfo.GetFiles();
+        for (int i = 0; i < files.Length; i++)
+        {
+            string _src = files[i].FullName;
+            string _dst = Path.Combine(Application.dataPath, "Scripts/Model", files[i].Name);
+            UnityEngine.Debug.LogFormat("{0}\n<color=yellow>[====>>]</color> {1}", _src, _dst);
+            string str1 = "[00:00:00]";
+            string str2 = "[--:--:--]";
+            CopyTo(_src, _dst);
+        }
+    }
+
+    static void OpenExplorer(string filePath)
+    {
+        //Process.Start("c:\\");
+        Process.Start(filePath);
+    }
+
+    static void OpenIE(string url)
+    {
+        Process ie = new Process();
+        ie.StartInfo.FileName = "IEXPLORE.EXE";
+        ie.StartInfo.Arguments = @"http://www.baidu.com";
+        ie.Start();
+    }
+
+    static void RunBat(string filePath)
     {
         try
         {
-            bool redirectStandardOutput = true;
-            bool redirectStandardError = true;
-            bool useShellExecute = false;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                redirectStandardOutput = false;
-                redirectStandardError = false;
-                useShellExecute = true;
-            }
-
-            if (waitExit)
-            {
-                redirectStandardOutput = true;
-                redirectStandardError = true;
-                useShellExecute = false;
-            }
-
-            ProcessStartInfo info = new ProcessStartInfo
-            {
-                FileName = exe,
-                Arguments = arguments,
-                CreateNoWindow = true,
-                UseShellExecute = useShellExecute,
-                WorkingDirectory = workingDirectory,
-                RedirectStandardOutput = redirectStandardOutput,
-                RedirectStandardError = redirectStandardError,
-            };
-
-            Process process = Process.Start(info);
-
-            if (waitExit)
-            {
-                process.WaitForExit();
-                if (process.ExitCode != 0)
-                {
-                    throw new Exception($"{process.StandardOutput.ReadToEnd()} {process.StandardError.ReadToEnd()}");
-                }
-            }
-
-            return process;
+            Process bat = new Process();
+            bat.StartInfo.FileName = filePath;
+            bat.Start();
         }
         catch (Exception e)
         {
-            throw new Exception($"dir: {Path.GetFullPath(workingDirectory)}, command: {exe} {arguments}", e);
+            UnityEngine.Debug.Log(e.Message);
         }
+    }
+
+    static void CopyTo(string srcPath, string dstPath) 
+    {
+        if (!File.Exists(srcPath)) 
+        {
+            UnityEngine.Debug.LogError("源文件不存在：" + srcPath);
+            return;
+        }
+        if (File.Exists(dstPath)) 
+        {
+            File.Delete(dstPath);
+        }
+        File.Copy(srcPath, dstPath);
+    }
+
+    static void ClearConsole()
+    {
+        Assembly assembly = Assembly.GetAssembly(typeof(SceneView));
+        Type logEntries = assembly.GetType("UnityEditor.LogEntries");
+        MethodInfo clearConsoleMethod = logEntries.GetMethod("Clear");
+        clearConsoleMethod.Invoke(new object(), null);
+
+        //UnityEngine.Debug.Log("<color=green>clear!</color>");
     }
 }

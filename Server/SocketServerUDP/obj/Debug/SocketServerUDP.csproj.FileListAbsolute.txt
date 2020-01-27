@@ -1,5 +1,0 @@
-G:\UnitySocket\SocketServer\SocketServerUDP\obj\Debug\SocketServerUDP.csprojResolveAssemblyReference.cache
-G:\UnitySocket\SocketServer\SocketServerUDP\bin\Debug\SocketServerUDP.exe
-G:\UnitySocket\SocketServer\SocketServerUDP\bin\Debug\SocketServerUDP.pdb
-G:\UnitySocket\SocketServer\SocketServerUDP\obj\Debug\SocketServerUDP.exe
-G:\UnitySocket\SocketServer\SocketServerUDP\obj\Debug\SocketServerUDP.pdb
