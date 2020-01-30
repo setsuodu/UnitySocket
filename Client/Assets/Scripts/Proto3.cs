@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using UnityEngine;
 using Google.Protobuf;
+using Tutorial;
 
-public class Test : MonoBehaviour
+public class Proto3 : MonoBehaviour
 {
     void Start()
     {

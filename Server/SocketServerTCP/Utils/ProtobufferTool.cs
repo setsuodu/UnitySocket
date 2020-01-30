@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Google.Protobuf;
 
 public class ProtobufferTool
@@ -21,7 +22,18 @@ public class ProtobufferTool
     {
         CodedInputStream stream = new CodedInputStream(dataBytes);
         T msg = new T();
-        stream.ReadMessage(msg);
+        try
+        {
+            stream.ReadMessage(msg);
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine("接收错误：" + e.ToString());
+
+            //发过来的是utf8-string
+            string str = System.Text.Encoding.UTF8.GetString(dataBytes);
+            Console.WriteLine(str);
+        }
         return msg;
     }
 }

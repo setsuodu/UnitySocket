@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
+using Tutorial;
 
 public class ChatManager : MonoBehaviour
 {
