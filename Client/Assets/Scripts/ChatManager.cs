@@ -1,8 +1,11 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Diagnostics;
 using UnityEngine;
 using Tutorial;
+using Debug = UnityEngine.Debug;
 
 public class ChatManager : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class ChatManager : MonoBehaviour
 
     public UIInput textInput;
     public UILabel chatLable;
+
+    private Stopwatch sw; 
 
     void Start()
     {
@@ -62,7 +67,16 @@ public class ChatManager : MonoBehaviour
             if (length > 0)
             {
                 TheMsg msg2 = ProtobufferTool.Deserialize<TheMsg>(data);
-                message = string.Format("{0}说：{1}", msg2.Name, msg2.Content);
+                message = $"{msg2.Name}说：{msg2.Content}";
+
+                sw.Stop();
+                //获取运行时间间隔  
+                TimeSpan ts = sw.Elapsed;
+                //获取运行时间[毫秒]  
+                long times = sw.ElapsedMilliseconds;
+                //获取运行的总时间  
+                long times2 = sw.ElapsedTicks;
+                Debug.Log($"times={times} times2={times2}");
             }
         }
     }
@@ -70,8 +84,11 @@ public class ChatManager : MonoBehaviour
     //Send方法
     void Send(byte[] data)
     {
-        Debug.Log("C2S：" + data.Length);
+        UnityEngine.Debug.Log("C2S：" + data.Length);
         clientSocket.Send(data);
+
+        sw = new Stopwatch();
+        sw.Start();
     }
 
     public void OnSendButtonClick()
